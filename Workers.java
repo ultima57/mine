@@ -13,7 +13,7 @@ public class Workers implements Runnable {
     public void run() {
         System.out.println(Thread.currentThread().getName() + " awake");
         while (commonResource.mine.getAmountOfGold() > 0) {
-            if (commonResource.mine.isEmpty() && (withGold == false)) {
+            synchronized (commonResource.mine) {
 
                 commonResource.mine.setEmpty(false);
 
@@ -31,9 +31,10 @@ public class Workers implements Runnable {
                 System.out.println("Золота в шахте: " + commonResource.mine.getAmountOfGold());
                 commonResource.mine.setEmpty(true);
                 withGold = true;
-            }
 
-            if (commonResource.castle.isEmpty() && (withGold == true)) {
+            }
+            synchronized (commonResource.castle) {
+
                 commonResource.castle.setEmpty(false);
                 commonResource.addingGoldToCastel(myGold);
 

@@ -27,7 +27,12 @@ public class CommonResource {
 
 class Mine {
     private int amountOfGold = 100;
-    private boolean isEmpty = true;
+    private boolean isEmpty = false;
+
+    public int getGold() {
+        this.amountOfGold -= 10;
+        return (10);
+    }
 
     public int getAmountOfGold() {
         return amountOfGold;
@@ -38,10 +43,13 @@ class Mine {
     }
 
     public boolean isEmpty() {
+        if (amountOfGold <= 0) {
+            return true;
+        }
         return isEmpty;
     }
 
-    synchronized public void setEmpty(boolean isEmpty) {
+    public void setEmpty(boolean isEmpty) {
         this.isEmpty = isEmpty;
     }
 
@@ -63,7 +71,7 @@ class Castle {
         return isEmpty;
     }
 
-    synchronized public void setEmpty(boolean isEmpty) {
+    public void setEmpty(boolean isEmpty) {
         this.isEmpty = isEmpty;
     }
 

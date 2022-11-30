@@ -15,7 +15,7 @@ public class App {
             threads[i].start();
         }
         try {
-            for (int i = 1; i < workers.length; i++) {
+            for (int i = 0; i < workers.length; i++) {
                 threads[i].join();
             }
         } catch (InterruptedException e) {
